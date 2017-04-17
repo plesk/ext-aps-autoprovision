@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 1999-2017. Parallels IP Holdings GmbH. -->
+<module>
+    <id>aps-autoprovision</id>
+    <name>Application Auto-Provision</name>
+    <description>Automatically install WordPress, Drupal or Joomla on domains when a service plan is provisioned.</description>
+    <category>server_tool</category>
+    <category>web_app</category>
+    <url>https://github.com/plesk/ext-aps-autoprovision</url>
+    <version>1.0.0</version>
+    <release>3</release>
+    <vendor>Plesk</vendor>
+    <plesk_min_version>17.0</plesk_min_version>
+</module>
