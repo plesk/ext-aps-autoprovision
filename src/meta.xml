@@ -8,7 +8,7 @@
     <category>web_app</category>
     <url>https://github.com/plesk/ext-aps-autoprovision</url>
     <version>1.0.0</version>
-    <release>3</release>
+    <release>4</release>
     <vendor>Plesk</vendor>
     <plesk_min_version>17.0</plesk_min_version>
 </module>
