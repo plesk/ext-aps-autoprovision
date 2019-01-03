@@ -21,7 +21,6 @@ class Modules_ApsAutoprovision_Aps_Application
 
     public function install(pm_Domain $domain)
     {
-        $result = true;
         $this->_domain = $domain;
         $package = new Modules_ApsAutoprovision_Aps_Package();
         $latestPackage = $package->retriveLastVersion($this->_name);
@@ -52,8 +51,10 @@ class Modules_ApsAutoprovision_Aps_Application
     }
 
     protected function _getSettings() {
+        $client = $this->_domain->getClient();
         return [
-            'admin_email' => ($this->_domain->getClient()->getProperty('email') ?: 'nobody@example.com'),
+            'admin_email' => $client->getProperty('email') ?: 'nobody@example.com',
+            'admin_name' => Modules_ApsAutoprovision_Helper::getRandomLogin($client->getProperty('email') ?: $client->getLogin()),
             'admin_password' => Modules_ApsAutoprovision_Helper::getRandomPassword(),
         ];
     }
