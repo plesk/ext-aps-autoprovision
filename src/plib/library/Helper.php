@@ -3,6 +3,35 @@
 
 class Modules_ApsAutoprovision_Helper
 {
+    public static function getRandomLogin($email, $maxLength = 32, $randomLength = 8)
+    {
+        list($prefix) = explode('@', $email, 2);
+
+        $args = [
+            range('a', 'z'),
+            range(0, 9),
+        ];
+
+        mt_srand((float)microtime()*1000000);
+
+        // login should starts from letter, not a digit or special symbols
+        $prefix = preg_replace("/^[^a-zA-Z]+|[^a-zA-Z0-9-_]+/", '', $prefix);
+        $prefix = substr($prefix, 0, $maxLength - $randomLength - 1);
+
+        $separator = (0 < strlen($prefix)) ? '_' : '';
+        // add remaining symbols
+        $suffix = [];
+        while (count($suffix) < ($randomLength - 1)) {
+            $arg = $args[mt_rand(0, count($args) - 1)];
+            $suffix[] = $arg[mt_rand(0, count($arg) - 1)];
+        }
+        shuffle($suffix);
+        // if prefix is empty, first symbol must be not numeric
+        $suffix = $args[0][mt_rand(0, count($args[0]) - 1)] . implode('', $suffix);
+
+        return $prefix . $separator . $suffix;
+    }
+
     /**
     * Returns randomly-generated password based on strong policy
     * Password length is 10
