@@ -28,6 +28,11 @@ class Modules_ApsAutoprovision_EventListener implements EventListener
             pm_Settings::set('domain_issue_' . $objectId, null);
         }
     }
+
+    public function filterActions()
+    {
+        return ['phys_hosting_create', 'domain_delete'];
+    }
 }
  
 return new Modules_ApsAutoprovision_EventListener();
